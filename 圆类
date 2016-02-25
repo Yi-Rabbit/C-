@@ -1,0 +1,85 @@
+#include<iostream>
+using namespace std;
+
+class Point //点类定义
+{
+	int x, y; //点的x和y坐标
+public:
+	void InitPoint( int, int ); // 设置坐标
+	int GetX() { return x; } // 取x坐标
+	int GetY() { return y; } // 取y坐标
+	void Print(); //输出点的坐标
+};
+
+//类外定义两个成员函数
+void Point::InitPoint( int a, int b )
+{
+	x = a;
+	y = b;
+}
+
+void Point::Print()
+{
+	cout << '[' << x << ", " << y << ']';
+}
+
+class Circle //圆类定义
+{
+private:
+	double radius; //定义半径对象（变量）
+	Point Center; //定义圆心对象（变量）
+public:
+	void InitCircle( double, Point ); //设置圆类的数据
+	double GetRadius(); //取半径
+	Point GetCenter(); //取圆心
+	double Area(); //计算面积a
+	void Print(); //输出圆心坐标和半径
+};
+
+//类外定义成员函数
+void Circle::InitCircle( double r, Point p )
+{
+	radius = ( r >= 0 ? r : 0 );
+	Center = p;
+}
+
+double Circle::GetRadius() 
+{ 
+	return radius; 
+}
+
+Point Circle::GetCenter() 
+{ 
+	return Center; 
+}
+
+double Circle::Area() 
+{
+	return 3.14159 * radius * radius; 
+}
+
+void Circle::Print()
+{
+	cout << "Center = ";
+	Center.Print();
+	cout << "; Radius = " << radius << endl;
+}
+
+// 测试主函数
+int main()
+{
+	Point p,center;
+	p.InitPoint(30,50);
+	center.InitPoint(120,80);
+	Circle c;
+	c.InitCircle(10.0 ,center);
+	cout << "Point p:";
+	p.Print();
+	cout << endl;
+	cout << "Circle c:";
+	c.Print();
+	cout << "The center of circle c:";
+	c.GetCenter().Print();
+	cout << "\nThe area of circle c:" << c.Area() << endl;
+	return 0;
+}
